@@ -59,7 +59,7 @@ class AddTodo extends React.Component {
         <label>
           <input name="item" value={this.state.item} onChange={this.handleChange} />
         </label>
-        <button>Add Grocery</button>
+        <button>Add Todo</button>
       </form>
     );
   }
