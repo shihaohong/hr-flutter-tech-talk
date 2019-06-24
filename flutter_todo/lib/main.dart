@@ -67,11 +67,6 @@ class _TodoListState extends State<TodoList> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -80,23 +75,20 @@ class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
+    // by the _addTodo method above.
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
 
-    List<Widget> todoList = List<Widget>.generate(_todoList.length, (int index) {
-      String item = _todoList[index];
-
-      return ListTile(
-        title: Text(item),
-      );
-    });
+    List<Widget> todoList = List<Widget>.generate(
+      _todoList.length, 
+      (int index) => ListTile(title: Text(_todoList[index]),
+    ));
 
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
+        // Here we take the value from the TodoList object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
@@ -116,6 +108,7 @@ class _TodoListState extends State<TodoList> {
         // axis because Columns are vertical (the cross axis would be
         // horizontal).
         children: <Widget>[
+          ...todoList,
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 16.0,
@@ -129,7 +122,6 @@ class _TodoListState extends State<TodoList> {
               ),
             ),
           ),
-          ...todoList,
         ],
       ),
       floatingActionButton: FloatingActionButton(
